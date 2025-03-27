@@ -8,10 +8,12 @@ import {
   MayanRouteSWIFT,
 } from '@mayanfinance/wormhole-sdk-route';
 import dotenv from "dotenv";
-import { getSigner } from "./helpers";
+import { getSignerNew } from "./helpers";
 
 // Initialize dotenv
 dotenv.config();
+
+const ADDRESS = "0x0000000000000000000000000000000000000123";
 
 (async function () {
   // Setup
@@ -40,8 +42,8 @@ dotenv.config();
   console.log(dstTokens.slice(0, 5));
 
   // Pull private keys from env for testing purposes
-  const sender = await getSigner(sendChain);
-  const receiver = await getSigner(destChain);
+  const sender = await getSignerNew(sendChain, ADDRESS);
+  const receiver = await getSignerNew(destChain, ADDRESS);
 
   // Creating a transfer request fetches token details
   // since all routes will need to know about the tokens
